@@ -1,14 +1,24 @@
-# Use the Java Temurin 21 image as the base image
-FROM eclipse-temurin:21
+# Base image
+FROM node:18
 
-# Set the working directory in the container
-WORKDIR /app
+# Create app directory
+WORKDIR /usr/src/app
 
-# Copy the JAR file into the container
-COPY todobackend/target/demo-0.0.1-SNAPSHOT.jar app.jar
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+COPY package*.json ./
 
-# Expose the port your Spring Boot application is listening on
-EXPOSE 8080
+# Install app dependencies
+RUN npm install
 
-# Command to run the Spring Boot application
-CMD ["java", "-jar", "app.jar"]
+# Bundle app source
+COPY . .
+
+
+# Creates a "dist" folder with the production build
+RUN npm run build
+
+# Expose the port on which the app will run
+EXPOSE 3001
+
+# Start the server using the production build
+CMD ["npm", "run", "start"]

@@ -20,7 +20,7 @@ services:
       - './:/app'
       - '/app/node_modules'
     ports:
-      - 3001:3000
+      - 3000:3000
     stdin_open: true
     environment:
       - CHOKIDAR_USEPOLLING=true
@@ -31,18 +31,18 @@ services:
     #   - todo-app
 
 
-  # backend:
-  #   container_name: backend
-  #   build: ./nestjs-backend
-  #   volumes:
-  #     - './nestjs-backend:/app'
-  #     - '/app/node_modules'
-  #   ports:
-  #     - 4000:4000
-  #   stdin_open: true
-  #   environment:
-  #     - CHOKIDAR_USEPOLLING=true
-  #   command: npm run start:dev
+  backend:
+    container_name: backend
+    build: ./nestjs-backend
+    volumes:
+      - './nestjs-backend:/app'
+      - '/app/node_modules'
+    ports:
+      - 3001:3001
+    stdin_open: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    command: npm run start
   #   depends_on:
   #     - postgres
 
