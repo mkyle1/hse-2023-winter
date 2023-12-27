@@ -10,14 +10,9 @@ import { Todo } from './todo.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'username',
-      password: 'password',
-      database: 'dsdatabase',
-      entities: [Todo],
+      url: process.env.DATABASE_URL,
+      autoLoadEntities: true,
       synchronize: true,
-      logging: true,
     }),
     TypeOrmModule.forFeature([Todo]),
   ],
