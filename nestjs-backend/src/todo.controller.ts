@@ -6,8 +6,8 @@ export class TodoController {
   constructor(private readonly todoService: TodoService) {}
 
   @Post()
-  createTodo(@Body() { task, done }: { task: string; done: boolean }) {
-    return this.todoService.createTodo(task, done);
+  createTodo(@Body() { task, status }: { task: string; status: boolean }) {
+    return this.todoService.createTodo(task, status);
   }
 
   @Get()

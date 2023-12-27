@@ -10,8 +10,8 @@ export class TodoService {
     private readonly todoRepository: Repository<Todo>,
   ) {}
 
-  async createTodo(task: string, done: boolean): Promise<Todo> {
-    const todo = this.todoRepository.create({ task, done });
+  async createTodo(task: string, status: boolean): Promise<Todo> {
+    const todo = this.todoRepository.create({ task, status });
     return this.todoRepository.save(todo);
   }
 

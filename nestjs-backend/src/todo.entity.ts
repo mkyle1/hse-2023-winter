@@ -9,5 +9,5 @@ export class Todo {
   task: string;
 
   @Column()
-  done: boolean;
+  status: boolean;
 }
