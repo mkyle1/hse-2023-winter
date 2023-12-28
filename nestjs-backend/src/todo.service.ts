@@ -18,4 +18,22 @@ export class TodoService {
   async getAllTodos(): Promise<Todo[]> {
     return this.todoRepository.find();
   }
+
+  async updateTodo(
+    id: number,
+    status: boolean,
+  ): Promise<Todo | null> {
+    const todo = await this.todoRepository.findOne({ where: { id } });
+    if (!todo) return null;
+    todo.status = status;
+    return this.todoRepository.save(todo);
+  }
+
+  async deleteTodo(
+    id: number,
+  ): Promise<Todo | null> {
+    const todo = await this.todoRepository.findOne({ where: { id } });
+    if (!todo) return null;
+    return this.todoRepository.remove(todo);
+  }
 }

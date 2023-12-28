@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Delete } from '@nestjs/common';
 import { TodoService } from './todo.service';
 
 @Controller('todos')
@@ -13,5 +13,19 @@ export class TodoController {
   @Get()
   getAllTodos() {
     return this.todoService.getAllTodos();
+  }
+
+  @Put()
+  updateTodo(
+    @Body() { id, status }: { id: number; status: boolean },
+  ) {
+    return this.todoService.updateTodo(id,status);
+  }
+
+  @Delete()
+  deleteTodo(
+    @Body() { id }: { id: number },
+  ) {
+    return this.todoService.deleteTodo(id);
   }
 }
