@@ -19,6 +19,10 @@ export class TodoService {
     return this.todoRepository.find();
   }
 
+  async getTodoById(id: number): Promise<Todo | null> {
+    return this.todoRepository.findOne({ where: { id } });
+  }
+
   async updateTodo(
     id: number,
     status: boolean,

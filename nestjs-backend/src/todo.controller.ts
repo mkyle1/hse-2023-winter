@@ -15,6 +15,11 @@ export class TodoController {
     return this.todoService.getAllTodos();
   }
 
+  @Get("/id")
+  getTodoById(@Body() { id }: { id: number }) {
+    return this.todoService.getTodoById(id);
+  }
+
   @Put()
   updateTodo(
     @Body() { id, status }: { id: number; status: boolean },
